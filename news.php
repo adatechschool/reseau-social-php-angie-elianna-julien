@@ -35,23 +35,18 @@
             </aside>
             <main>
                 <!-- L'article qui suit est un exemple pour la présentation et 
-                  @todo: doit etre retiré -->
+                    @todo: doit etre retiré -->
                 <article>
                     <h3>
-                        <time datetime='2020-02-01 11:12:13' >31 février 2010 à 11h12</time>
+                        <time datetime=''></time> 
                     </h3>
-                    <address>par AreTirer</address>
+                    <address></address> <!-- UTILISATEUR -->
                     <div>
-                        <p>Ceci est un paragraphe</p>
-                        <p>Ceci est un autre paragraphe</p>
-                        <p>... de toutes manières il faut supprimer cet 
-                            article et le remplacer par des informations en 
-                            provenance de la base de donnée (voir ci-dessous)</p>
+                        <p></p>
                     </div>                                            
                     <footer>
-                        <small>♥1012 </small>
-                        <a href="">#lorem</a>,
-                        <a href="">#piscitur</a>,
+                        <small>♥</small> <!-- LIKES -->
+                        <a href="">#</a>, <!-- TAGS -->
                     </footer>
                 </article>               
 
