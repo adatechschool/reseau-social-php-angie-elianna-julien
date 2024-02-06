@@ -40,7 +40,7 @@
                         <h3><?php echo $tag['label']; ?></h3>
                         <p><?php echo $tag['id']; ?></p>
                         <nav>
-                            <a href="tags.php?tag_id=<?php echo $tag['id']; ?>">Messages</a>
+                            <a href="tags.php?tag_id=<?php echo $tag['id']; ?>">Voir posts liés</a>
                         </nav>
                     </article>
                 <?php } ?>
