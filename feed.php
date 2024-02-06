@@ -39,13 +39,13 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                echo "<pre>" . print_r($user, 1) . "</pre>";
+                // echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice XXX
+                        auxquel est abonnée l'utilisatrice <?php echo $user['alias'] ?>
                         (n° <?php echo $userId ?>)
                     </p>
 
@@ -57,21 +57,33 @@
                  * Etape 3: récupérer tous les messages des abonnements
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content,
+                SELECT 
+                    posts.content,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
-                    GROUP_CONCAT(DISTINCT tags.label) AS taglist 
-                    FROM followers 
-                    JOIN users ON users.id=followers.followed_user_id
-                    JOIN posts ON posts.user_id=users.id
-                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                    LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                    LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    WHERE followers.following_user_id='$userId' 
-                    GROUP BY posts.id
-                    ORDER BY posts.created DESC  
-                    ";
+                    GROUP_CONCAT(DISTINCT tags.label) AS taglist,
+                    GROUP_CONCAT(DISTINCT tags.id) AS tag_ids -- Ajout de l'ID du tag
+                FROM 
+                    followers 
+                JOIN 
+                    users ON users.id=followers.followed_user_id
+                JOIN 
+                    posts ON posts.user_id=users.id
+                LEFT JOIN 
+                    posts_tags ON posts.id = posts_tags.post_id  
+                LEFT JOIN 
+                    tags ON posts_tags.tag_id  = tags.id 
+                LEFT JOIN 
+                    likes ON likes.post_id  = posts.id 
+                WHERE 
+                    followers.following_user_id='$userId' 
+                GROUP BY 
+                    posts.id
+                ORDER BY 
+                    posts.created DESC  
+            ";
+            
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 if ( ! $lesInformations)
                 {
@@ -82,27 +94,40 @@
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  * A vous de retrouver comment faire la boucle while de parcours...
                  */
-                ?>                
+                
+                while ($post = $lesInformations->fetch_assoc())
+{
+
+
+                ?>  
+
                 <article>
                     <h3>
-                        <time datetime='2020-02-01 11:12:13' >31 février 2010 à 11h12</time>
+                        <time datetime='' ><?php echo $post['created'] ?></time>
                     </h3>
-                    <address>par AreTirer</address>
+                    <address>par <?php echo $post['author_name'] ?></address>
                     <div>
-                        <p>Ceci est un paragraphe</p>
-                        <p>Ceci est un autre paragraphe</p>
-                        <p>... de toutes manières il faut supprimer cet 
-                            article et le remplacer par des informations en 
-                            provenance de la base de donnée</p>
+                        <p><?php echo $post['content'] ?></p>
+                        
                     </div>                                            
                     <footer>
-                        <small>♥ 132</small>
-                        <a href="">#lorem</a>,
-                        <a href="">#piscitur</a>,
+                        <small>♥ <?php echo $post['like_number'] ?></small>
+                        <?php
+// Récupérer à la fois les tags et leurs ID
+$tags_with_ids = array_combine(explode(',', $post['taglist']), explode(',', $post['tag_ids']));
+
+// Parcourir les tags avec leurs ID correspondants
+foreach ($tags_with_ids as $tag => $tag_id) {
+    echo '<a href="http://localhost/resoc_n1/tags.php?tag_id=' . $tag_id . '"> #' . $tag . '</a>';
+}
+?>
+
+
                     </footer>
                 </article>
                 <?php
                 // et de pas oublier de fermer ici vote while
+            }
                 ?>
 
 
