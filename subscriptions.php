@@ -45,7 +45,7 @@
                 ?>
                 <article>
                     <img src="user.jpg" alt="blason"/>
-                    <h3><?php echo $subscribers['alias'] ?></h3>
+                    <h3><a href="wall.php?user_id=<?php echo $subscribers['id']; ?>"><?php echo $subscribers['alias'] ?></a></h3>
                     <p><?php echo $subscribers['id'] ?></p>                    
                 </article>
                 <?php

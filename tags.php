@@ -58,6 +58,7 @@
                 SELECT posts.content,
                        posts.created,
                        users.alias as author_name,  
+                       users.id as author_id,
                        count(likes.id) as like_number,  
                        GROUP_CONCAT(DISTINCT tags.label) AS taglist,
                        GROUP_CONCAT(DISTINCT tags.id) AS tag_id_list
@@ -90,21 +91,20 @@
                         <h3>
                             <time datetime='' ><?php echo $post['created'] ?></time>
                         </h3>
-                        <address>par <?php echo $post['author_name'] ?></address>
+                        <address><a href="wall.php?user_id=<?php echo $post['author_id']; ?>">par <?php echo $post['author_name'] ?></a></address>
                         <div>
                             <p><?php echo $post['content'] ?></p>
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
                             <?php
-// Récupérer à la fois les tags et leurs ID
-$tags_with_ids = array_combine(explode(',', $post['taglist']), explode(',', $post['tag_id_list']));
-
-// Parcourir les tags avec leurs ID correspondants
-foreach ($tags_with_ids as $tag => $tag_id) {
-    echo '<a href="http://localhost/resoc_n1/tags.php?tag_id=' . $tag_id . '"> #' . $tag . '</a>';
-}
-?>
+                            // Récupérer à la fois les tags et leurs ID
+                            $tags_with_ids = array_combine(explode(',', $post['taglist']), explode(',', $post['tag_id_list']));
+                            // Parcourir les tags avec leurs ID correspondants
+                            foreach ($tags_with_ids as $tag => $tag_id) {
+                                echo '<a href="http://localhost/resoc_n1/tags.php?tag_id=' . $tag_id . '"> #' . $tag . '</a>';
+                            }
+                            ?>
                         </footer>
                     </article>
                 <?php } ?>
