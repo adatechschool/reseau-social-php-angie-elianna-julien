@@ -52,7 +52,6 @@
             </aside>
             <main>
                 <?php
-                echo $userId;
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
