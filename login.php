@@ -67,6 +67,7 @@
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                             $_SESSION['connected_id'] = $user['id'];
                             echo $_SESSION['connected_id'];
+                            echo $userId
                         }
                     }
                     ?>                     
@@ -84,7 +85,6 @@
                         Pas de compte?
                         <a href='registration.php'>Inscrivez-vous.</a>
                     </p>
-
                 </article>
             </main>
         </div>
