@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -49,6 +52,7 @@
             </aside>
             <main>
                 <?php
+                echo $userId;
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
