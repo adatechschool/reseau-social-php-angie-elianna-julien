@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -117,21 +114,20 @@
                     <footer>
                         <small>♥ <?php echo $post['like_number'] ?></small>
                         <?php
-// Récupérer à la fois les tags et leurs ID
-$tags_with_ids = array_combine(explode(',', $post['taglist']), explode(',', $post['tag_ids']));
-
-// Parcourir les tags avec leurs ID correspondants
-foreach ($tags_with_ids as $tag => $tag_id) {
-    echo '<a href="http://localhost/resoc_n1/tags.php?tag_id=' . $tag_id . '"> #' . $tag . '</a>';
-}
-?>
+                            // Récupérer à la fois les tags et leurs ID
+                            $tags_with_ids = array_combine(explode(',', $post['taglist']), explode(',', $post['tag_ids']));
+                            // Parcourir les tags avec leurs ID correspondants
+                            foreach ($tags_with_ids as $tag => $tag_id) {
+                                echo '<a href="http://localhost/resoc_n1/tags.php?tag_id=' . $tag_id . '"> #' . $tag . '</a>';
+                            }
+                        ?>
 
 
                     </footer>
                 </article>
                 <?php
                 // et de pas oublier de fermer ici vote while
-            }
+                }
                 ?>
 
 
