@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -7,9 +10,7 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-    <?php
-        include "header.php";
-    ?>
+
 
         <div id="wrapper" >
 
@@ -58,7 +59,7 @@
                         $user = $res->fetch_assoc();
                         if ( ! $user OR $user["password"] != $passwdAVerifier)
                         {
-                            echo "La connexion a échouée. ";
+                            echo "Mauvais nom d'utilisateur ou mot de passe. ";
                             
                         } else
                         {
@@ -66,8 +67,7 @@
                             // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                             $_SESSION['connected_id'] = $user['id'];
-                            echo $_SESSION['connected_id'];
-                            echo $userId
+                            header("Location: http://localhost/resoc_n1/news.php");
                         }
                     }
                     ?>                     

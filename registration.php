@@ -7,9 +7,6 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <?php 
-            include "header.php";
-        ?>
 
         <div id="wrapper" >
 
@@ -64,7 +61,7 @@
                         } else
                         {
                             echo "Votre inscription est un succès : " . $new_alias;
-                            echo " <a href='login.php'>Connectez-vous.</a>";
+                            header("Location: http://localhost/resoc_n1/login.php");
                         }
                     }
                     ?>                     
