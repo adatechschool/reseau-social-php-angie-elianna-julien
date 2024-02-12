@@ -81,15 +81,18 @@
                             echo "Message posté !";
                         }
                     }
+
+                    $userId = intval($_GET['user_id']);
+                    
                     ?>                     
                     <form action="post.php?user_id=<?php echo $userId ?>" method="post">
-                        <input type='hidden' name='???' value='achanger'>
+                        <input type='hidden' name='user_id' value='<?php echo $userId ?>'>
                         <dl>
                             <dt><label for='message'>Message</label></dt>
                             <dd><textarea name='message'></textarea></dd>
                         </dl>
                         <input type='submit'>
-                    </form>               
+                    </form>              
                 </article>
             </main>
         </div>
