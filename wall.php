@@ -40,9 +40,9 @@
                 
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
-
-
-                 //Bouton "s'abonner" : construction de la requete
+                $enCoursDeTraitement = isset($_POST['user_id']);
+                if ($enCoursDeTraitement) {
+                    //Bouton "s'abonner" : construction de la requete
                  $followedUserId = $_GET['user_id'];
                  $followingUserId = $_SESSION['connected_id'];
 
@@ -60,7 +60,10 @@
                          } else
                          {
                              echo "Abonnement réussi !";
-                         }
+                         } 
+                }
+
+                
                  
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
@@ -69,7 +72,10 @@
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
                         (n° <?php echo $userId ?>)
                     </p>
-                    <p> <button>S'abonner à <?php echo $user['alias'] ?> </button></p>
+                    <form method="post" action="">
+                <input type="hidden" name="user_id" value="<?php echo $userId ?>">
+                <button type="submit">S'abonner à <?php echo $user['alias'] ?></button>
+            </form>
                 </section>
             </aside>
             <main>
