@@ -28,7 +28,7 @@
             include "connexionbdd.php";
             ?>
 
-            <aside>
+            <aside> 
                 <?php
                 /**
                  * Etape 3: récupérer le nom de l'utilisateur
@@ -36,8 +36,32 @@
                 $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
+
+                
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
+
+
+                 //Bouton "s'abonner" : construction de la requete
+                 $followedUserId = $_GET['user_id'];
+                 $followingUserId = $_SESSION['connected_id'];
+
+                 $abonnementInstructionSql = "INSERT INTO followers  "
+                         . "(id, followed_user_id, following_user_id) "
+                         . "VALUES (NULL, "
+                         . $followedUserId . ", "
+                         . "'" . $followingUserId . "')"
+                         ;
+                
+                 $ok = $mysqli->query($abonnementInstructionSql);
+                         if ( ! $ok)
+                         {
+                             echo "Impossible de s'abonner: " . $mysqli->error;
+                         } else
+                         {
+                             echo "Abonnement réussi !";
+                         }
+                 
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -45,6 +69,7 @@
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
                         (n° <?php echo $userId ?>)
                     </p>
+                    <p> <button>S'abonner à <?php echo $user['alias'] ?> </button></p>
                 </section>
             </aside>
             <main>
@@ -89,6 +114,10 @@
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
             
+                
+                
+
+
                 while ($post = $lesInformations->fetch_assoc())
                 
                 {
