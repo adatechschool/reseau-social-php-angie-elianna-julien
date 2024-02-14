@@ -1,13 +1,13 @@
 body{
-    background-color: rgb(189, 189, 189);
-    font-family: Arial;
+    background-color: rgb(194, 96, 255);
+    font-family: "Sixtyfour", sans-serif;;
 }
 
 a{text-decoration: none; color:black;}
 a:hover{text-decoration: underline;}
 
 body>header{
-    background-color: #fff;
+    background-color: #9bf0a9;
     display:flex;
     width:80em;
     margin:0 auto 2em auto;    
@@ -74,7 +74,7 @@ body>header #user:hover ul{
     margin:0 auto 2em auto;
 }
 #wrapper aside{
-    background-color: #fff;
+    background-color: #51ff00;
     flex:1;
     padding:1em;
     border-radius: 1em;    
@@ -92,7 +92,7 @@ body>header #user:hover ul{
     overflow-y:  scroll;
 }
 #wrapper main article{
-    background-color: #fff;
+    background-color: #51ff00;
     padding:1em;
     margin-bottom: 1em ;
     border-radius: 1em;
@@ -124,11 +124,11 @@ body>header #user:hover ul{
 
 #wrapper.admin{flex-direction: row-reverse}
 #wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
-#wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
+#wrapper.admin main{flex:2;background-color: #9bf0a9;border-radius: 0;padding:0;}
 #wrapper.admin h2{text-align: center;}
 #wrapper.admin h3{margin:0;}
 #wrapper.admin nav{text-align: right;}
-#wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
+#wrapper.admin article{border:1px solid #9bf0a9;border-radius: 1em;padding:1em;margin:1em;}
 #wrapper.admin article p{float:left;margin:0;}
 
 

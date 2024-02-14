@@ -13,6 +13,9 @@ if (isset($_SESSION['connected_id'])) {
 }
 ?>
 <header>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet">
         <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a>
                 <nav id="menu">
                     <a href="news.php">Actualités</a>
